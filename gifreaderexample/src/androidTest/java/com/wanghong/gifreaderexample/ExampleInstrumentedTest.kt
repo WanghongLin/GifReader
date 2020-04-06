@@ -1,4 +1,4 @@
-package com.example.gifreaderexample
+package com.wanghong.gifreaderexample
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

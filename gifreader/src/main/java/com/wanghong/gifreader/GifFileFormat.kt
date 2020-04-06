@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.gifreader
+package com.wanghong.gifreader
 
 class GifFileFormat(private val gifFileBytes: ByteArray) {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.gifreaderexample
+package com.wanghong.gifreaderexample
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -25,7 +25,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.PermissionChecker
 import android.support.v7.app.AppCompatActivity
-import com.example.gifreader.GifFileFormat
+import com.wanghong.gifreader.GifFileFormat
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.FileOutputStream

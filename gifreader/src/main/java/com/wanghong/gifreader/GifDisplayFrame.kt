@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.gifreader
+package com.wanghong.gifreader
 
 /**
  * Created by wanghonglin on 2018/11/14 10:31 AM.

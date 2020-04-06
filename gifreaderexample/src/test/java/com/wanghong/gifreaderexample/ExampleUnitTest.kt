@@ -1,4 +1,4 @@
-package com.example.gifreaderexample
+package com.wanghong.gifreaderexample
 
 import org.junit.Test
 

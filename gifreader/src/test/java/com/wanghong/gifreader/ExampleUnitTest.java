@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.gifreader;
+package com.wanghong.gifreader;
 
 import org.junit.Test;
 

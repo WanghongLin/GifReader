@@ -1,4 +1,4 @@
-package com.example.gifreader;
+package com.wanghong.gifreader;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
