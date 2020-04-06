@@ -23,10 +23,10 @@ internal class GifApplicationExtension(private val byteData: ByteArray) {
     val blockSize = byteData[2].toPositiveInt()
     val applicationIdentifier = String(byteData.sliceArray(IntRange(3, 10)).toCharArray())
     val applicationAuthenticationCode = String(byteData.sliceArray(IntRange(11, 13)).toCharArray())
-    val loopingTimes = byteData[17].toPositiveInt().shl(4).plus(byteData[16].toPositiveInt())
+    val loopingCount = byteData[17].toPositiveInt().shl(4).plus(byteData[16].toPositiveInt())
 
     override fun toString(): String {
-        return "GifApplicationExtension(byteData=${byteData.toHexString()}, extensionIntroducer=$extensionIntroducer, applicationExtensionLabel=$applicationExtensionLabel, blockSize=$blockSize, applicationIdentifier='$applicationIdentifier', applicationAuthenticationCode='$applicationAuthenticationCode', loopingTimes=$loopingTimes)"
+        return "GifApplicationExtension(byteData=${byteData.toHexString()}, extensionIntroducer=$extensionIntroducer, applicationExtensionLabel=$applicationExtensionLabel, blockSize=$blockSize, applicationIdentifier='$applicationIdentifier', applicationAuthenticationCode='$applicationAuthenticationCode', loopingTimes=$loopingCount)"
     }
 
 }

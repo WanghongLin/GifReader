@@ -16,7 +16,17 @@
 
 package com.wanghong.gifreader
 
+import java.io.File
+
+/**
+ * Represent a gif file
+ */
 class GifFileFormat(private val gifFileBytes: ByteArray) {
+
+    /**
+     * Construct a gif file from local file path
+     */
+    constructor(gifFilePath: String) : this(File(gifFilePath).readBytes())
 
     private var gifHeaderBlock : GifHeaderBlock
     internal var gifLocalScreenDescriptor : GifLocalScreenDescriptor
@@ -25,7 +35,7 @@ class GifFileFormat(private val gifFileBytes: ByteArray) {
     private val gifFrames = mutableListOf<GifFrame>()
 
     // private val gifFileBytes = File(gifFilePath).readBytes()
-    private var currentLoopTimes = 0
+    private var currentLoopCount = 0
 
     init {
         gifHeaderBlock = readHeaderBlock()
@@ -149,9 +159,14 @@ class GifFileFormat(private val gifFileBytes: ByteArray) {
 
     private var currentDisplayFrameIndex = 0
 
+    /**
+     * Get the next frame
+     *
+     * @return [GifDisplayFrame] a frame contain the decoded data
+     */
     fun nextDisplayFrame(): GifDisplayFrame {
 
-        if (loopTimes() != 0 && currentLoopTimes >= loopTimes()) {
+        if (loopCount() != 0 && currentLoopCount >= loopCount()) {
             return GifDisplayFrame(canvasDisplayByteSize()).apply { isEmpty = true }
         }
 
@@ -229,22 +244,28 @@ class GifFileFormat(private val gifFileBytes: ByteArray) {
 
         if (++currentDisplayFrameIndex >= gifFrames.size) {
             currentDisplayFrameIndex = 0
-            currentLoopTimes++
+            currentLoopCount++
         }
 
         return gifDisplayFrame
     }
 
+    /**
+     * Dump info about this gif file to stdout
+     */
     fun dumpGifInfo() {
         println("GifFileFormat.dumpGifInfo $gifHeaderBlock")
         println("GifFileFormat.dumpGifInfo $gifLocalScreenDescriptor")
         println("GifFileFormat.dumpGifInfo $gifApplicationExtension")
         println("GifFileFormat.dumpGifInfo global table size ${gifGlobalColorTable.size}")
         println("GifFileFormat.dumpGifInfo total frames ${gifFrames.size}")
-        println("GifFileFormat.dumpGifInfo loop times ${loopTimes()}")
+        println("GifFileFormat.dumpGifInfo loop times ${loopCount()}")
     }
 
-    fun loopTimes(): Int = this.gifApplicationExtension?.loopingTimes ?: -1
+    /**
+     * Get the loop count of this gif file
+     */
+    fun loopCount(): Int = this.gifApplicationExtension?.loopingCount ?: -1
     val canvasWidth = this.gifLocalScreenDescriptor.canvasWidth
     val canvasHeight = this.gifLocalScreenDescriptor.canvasHeight
 
